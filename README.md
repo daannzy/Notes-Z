@@ -24,7 +24,7 @@ Este projeto é um app simples que permite ao usuário digitar em um campo de te
 
 Para permitir que o app leia e grave arquivos no armazenamento interno, habilitamos a permissão:
 
-WRITE_EXTERNAL_STORAGE
+## WRITE_EXTERNAL_STORAGE
 
 css
 Copiar
