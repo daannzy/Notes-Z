@@ -1,6 +1,7 @@
 # Notes-Z
 Um app simples em desenvilvimento pra treino 
 
+![Logo do App](logo.png)
 
 
 # App de Notas com Salvamento Automático
