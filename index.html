@@ -1,18 +1,28 @@
-<!doctype html>
-  <html>
-    <head>
-      <meta charset="UTF-8">
-      <title>download iniciando...</title>
-      <script>
-        window.onload = () => {
-          window.location.href = "https://github.com/daannzy/Notes-Z/releases/latest/download/app.apk";
-        };
-</script>
-    </head>
-    <body>
-      <img src="unnamed-_1_.png" alt="Logo do aplicativo Notes-Z" width="200">
-      <p><strong>Notes-Z</strong> Este projeto é um app simples que permite ao usuário digitar em um campo de texto multilinha e salvar o conteúdo automaticamente em um arquivo de texto no armazenamento interno do dispositivo.</p>
-      <p>Seu download está comecando...</p>
-      <p> <a href="https://github.com/daannzy/Notes-Z/releases/latest/download/app.apk">Baixar APK</a>
-    </body>
-  </html>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>download iniciando...</title>
+  <script>
+    window.onload = () => {
+      const link = document.createElement("a");
+      link.href = "https://github.com/daannzy/Notes-Z/releases/latest/download/app.apk";
+      link.download = "app.apk";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    };
+  </script>
+</head>
+<body style="font-family:sans-serif; text-align:center; padding: 20px; background:#fdfdfd;">
+  <img src="unnamed-_1_.png" alt="Logo do aplicativo Notes-Z" width="200">
+  <p><strong>Notes-Z</strong></p>
+  <p>
+    Este projeto é um app simples que permite ao usuário digitar em um campo de texto multilinha e salvar o conteúdo automaticamente em um arquivo de texto no armazenamento interno do dispositivo.
+  </p>
+  <p>Seu download está começando automaticamente...</p>
+  <p>
+    Caso não comece, <a href="https://github.com/daannz/Notes-Z/releases/latest/download/app.apk">clique aqui para baixar manualmente</a>.
+  </p>
+</body>
+</html>
