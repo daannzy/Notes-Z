@@ -1,1 +1,0 @@
-Pasta para armazenar o APK do app Notes Z.
