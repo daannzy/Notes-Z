@@ -2,19 +2,32 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>download iniciando...</title>
-  <script>
-    window.onload = function () {
-      // inicia o download automático do APK local
-      window.location.href = "com.daannzy.notesz_1.2.apk";
-    }
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
   </script>
 </head>
 <body style="font-family:sans-serif; text-align:center; padding: 20px; background:#fdfdfd;">
   <img src="13108958.png" alt="13108958.png" width="200">
   <p><strong>Notes-Z</strong></p>
   <p>
+   <style>
+  .botao-download {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #007bff; /* Cor azul */
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 20px;
+    transition: background 0.3s;
+  }
+
+  .botao-download:active {
+    background-color: #0056b3; /* Cor muda ao tocar */
+    transform: scale(0.98);
+  }
+   </style>
     Este projeto é um app simples que permite ao usuário digitar em um campo de texto multilinha e salvar o conteúdo automaticamente em um arquivo de texto no armazenamento interno do dispositivo.
   </p>
   <p>Seu download está começando automaticamente...</p>
@@ -22,3 +35,6 @@
   </p>
 </body>
 </html>
+<a href="com.daannzy.notesz_1.2.apk" class="botao-download">
+   Baixar Notes-Z (APK)
+</a>
