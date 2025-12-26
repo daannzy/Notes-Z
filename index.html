@@ -52,8 +52,10 @@
      
       const apkAsset = data.assets.find(asset => asset.name.endsWith('.apk'));
       
-      if (apkAsset) {
-        btn.href = apkAsset.browser_download_url;
+if (apkAsset) {
+  btn.href = apkAsset.browser_download_url;
+ }
+
       }
     } catch (error) {
      
