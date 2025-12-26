@@ -53,7 +53,12 @@
   </p>
 
   <p>
-    <a id="download-btn" href="#" class="botao-download">
+    <!-- 🔥 LINK DIRETO DO RELEASE (FUNCIONA) -->
+    <a
+      class="botao-download"
+      href="https://github.com/daannzy/Notes-Z/releases/download/v1.2/com.daannzy.notesz_1.2.apk"
+      download
+    >
       <i class="fas fa-download"></i> Baixar / atualizar o Notes Z
     </a>
   </p>
@@ -76,38 +81,6 @@
       &copy; 2025 daannzy
     </p>
   </footer>
-
-  <!-- SCRIPT FINAL — SIMPLES E FUNCIONAL -->
-  <script>
-    async function atualizarLinkDownload() {
-      const repo = "daannzy/Notes-Z";
-      const btn = document.getElementById("download-btn");
-
-      try {
-        const res = await fetch(`https://api.github.com/repos/${repo}/releases/latest`);
-        const data = await res.json();
-
-        const apk = data.assets.find(a =>
-          a.name.toLowerCase().endsWith(".apk")
-        );
-
-        if (!apk) throw new Error("APK não encontrado");
-
-        const tag = data.tag_name;
-        const file = apk.name;
-
-        // FORÇA DOWNLOAD (não abre página da CDN)
-        btn.href = `https://cdn.jsdelivr.net/gh/${repo}@${tag}/${file}?download=1`;
-        btn.setAttribute("download", file);
-
-      } catch (e) {
-        // Plano B: GitHub direto
-        btn.href = "https://github.com/daannzy/Notes-Z/releases/latest";
-      }
-    }
-
-    atualizarLinkDownload();
-  </script>
 
 </body>
 </html>
