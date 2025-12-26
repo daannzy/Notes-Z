@@ -53,17 +53,16 @@
      
       const apkAsset = data.assets.find(asset => asset.name.toLowerCase().includes('.apk')
       
-if (apkAsset) {
+if (apkAsset && btn) {
   btn.href = apkAsset.browser_download_url;
  }
 
-      }
     } catch (error) {
-     
-      btn.href = "https://github.com/daannzy/Notes-Z/releases/latest";
-    }
+  if (btn) {
+    btn.href = "https://github.com/daannzy/Notes-Z/releases/latest";
   }
-  atualizarLinkDownload();
+}
+  window.onload = atualizarLinkDownload;
 </script>
 
   </p>
