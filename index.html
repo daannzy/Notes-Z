@@ -51,7 +51,7 @@
       const data = await response.json();
       
      
-      const apkAsset = data.assets.find(asset => asset.name.endsWith('.apk'));
+      const apkAsset = data.assets.find(asset => asset.name.toLowerCase().includes('.apk')
       
 if (apkAsset) {
   btn.href = apkAsset.browser_download_url;
