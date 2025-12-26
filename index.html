@@ -25,18 +25,11 @@
       font-weight: bold;
       font-size: 18px;
       margin-top: 20px;
-      transition: background 0.3s, transform 0.1s;
       cursor: pointer;
     }
 
     .botao-download:active {
       background-color: #0056b3;
-      transform: scale(0.98);
-    }
-
-    footer {
-      margin-top: 50px;
-      padding: 20px 0;
     }
   </style>
 </head>
@@ -48,39 +41,41 @@
   <p style="max-width: 600px; margin: 20px auto;">
     <strong>Notes Z</strong> é um app simples e leve para anotar ideias,
     lembretes e textos do dia a dia.<br>
-    Tudo o que você escreve é salvo automaticamente
-    no seu celular, sem complicação.
+    Tudo o que você escreve é salvo automaticamente no seu celular.
   </p>
 
   <p>
-    <!-- 🔥 LINK DIRETO DO RELEASE (FUNCIONA) -->
-    <a
-      class="botao-download"
-      href="https://github.com/daannzy/Notes-Z/releases/download/v1.2/com.daannzy.notesz_1.2.apk"
-      download
-    >
+    <a id="download-btn" href="#" class="botao-download">
       <i class="fas fa-download"></i> Baixar / atualizar o Notes Z
     </a>
   </p>
 
-  <p>
-    <a href="https://github.com/daannzy" target="_blank"
-       style="color: #007bff; text-decoration: none;">
-      Ver GitHub
-    </a>
-  </p>
+  <script>
+    async function atualizarLinkDownload() {
+      const repo = "daannzy/Notes-Z";
+      const btn = document.getElementById("download-btn");
 
-  <footer>
-    <div style="margin-bottom: 10px;">
-      <a href="https://github.com/daannzy" target="_blank"
-         style="color: #333; font-size: 28px; text-decoration: none;">
-        <i class="fab fa-github"></i>
-      </a>
-    </div>
-    <p style="margin: 0; font-size: 14px; color: #666;">
-      &copy; 2025 daannzy
-    </p>
-  </footer>
+      try {
+        const res = await fetch(`https://api.github.com/repos/${repo}/releases/latest`);
+        const data = await res.json();
+
+        const apk = data.assets.find(a =>
+          a.name.toLowerCase().endsWith(".apk")
+        );
+
+        if (!apk) throw "APK não encontrado";
+
+        // 👇 VOLTAMOS PRO QUE FUNCIONA
+        btn.href = apk.browser_download_url;
+        btn.setAttribute("download", apk.name);
+
+      } catch (e) {
+        btn.href = "https://github.com/daannzy/Notes-Z/releases";
+      }
+    }
+
+    atualizarLinkDownload();
+  </script>
 
 </body>
 </html>
