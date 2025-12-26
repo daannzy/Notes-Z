@@ -57,11 +57,12 @@ if (apkAsset && btn) {
   btn.href = apkAsset.browser_download_url;
 }
 
-      }
-    } catch (error) {
      
-      btn.href = "https://github.com/daannzy/Notes-Z/releases/latest";
-    }
+    } catch (error) {
+  if (btn) {
+    btn.href = "https://github.com/daannzy/Notes-Z/releases/latest";
+  }
+}
   window.onload = atualizarLinkDownload;
 </script>
 
