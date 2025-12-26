@@ -77,7 +77,7 @@
     </p>
   </footer>
 
-  <!-- SCRIPT FINAL (CORRIGIDO, NÃO TRAVA DOWNLOAD) -->
+  <!-- SCRIPT FINAL — SIMPLES E FUNCIONAL -->
   <script>
     async function atualizarLinkDownload() {
       const repo = "daannzy/Notes-Z";
@@ -96,12 +96,12 @@
         const tag = data.tag_name;
         const file = apk.name;
 
-        // CDN → download rápido e estável
-        btn.href = `https://cdn.jsdelivr.net/gh/${repo}@${tag}/${file}`;
+        // FORÇA DOWNLOAD (não abre página da CDN)
+        btn.href = `https://cdn.jsdelivr.net/gh/${repo}@${tag}/${file}?download=1`;
         btn.setAttribute("download", file);
 
       } catch (e) {
-        // Plano B seguro
+        // Plano B: GitHub direto
         btn.href = "https://github.com/daannzy/Notes-Z/releases/latest";
       }
     }
