@@ -6,7 +6,7 @@
   <title>Notes-Z - Download</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
-    /* Mantendo a essência do seu design azul e limpo */
+   
     .botao-download {
       display: inline-block;
       padding: 15px 30px;
@@ -62,26 +62,25 @@
       const btn = document.getElementById('download-btn');
       
       try {
-        // Busca a release mais recente na API do GitHub
+        
         const response = await fetch(`https://api.github.com/repos/${repo}/releases/latest`);
         const data = await response.json();
 
-        // Procura o arquivo .apk na lista de assets
+        
         const apkAsset = data.assets.find(asset => asset.name.toLowerCase().includes('.apk'));
 
         if (apkAsset && btn) {
-          // Define o link direto de download
+         
           btn.href = apkAsset.browser_download_url;
         }
       } catch (error) {
-        // Se a API falhar, o botão leva para a página de releases como segurança
+        
         if (btn) {
           btn.href = "https://github.com/daannzy/Notes-Z/releases/latest";
         }
       }
     }
 
-    // Executa a função assim que a página terminar de carregar
     window.onload = atualizarLinkDownload;
   </script>
 
