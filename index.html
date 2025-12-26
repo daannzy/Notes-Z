@@ -6,6 +6,7 @@
   <title>Notes-Z - Download</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
+    /* Mantendo a essência do seu design azul e limpo */
     .botao-download {
       display: inline-block;
       padding: 15px 30px;
@@ -37,7 +38,7 @@
   </p>
 
   <p>
-    <a id="download-btn" href="#" download class="botao-download">
+    <a id="download-btn" href="#" class="botao-download">
       <i class="fas fa-download"></i> Baixar / atualizar o Notes Z
     </a>
   </p>
@@ -59,39 +60,28 @@
     async function atualizarLinkDownload() {
       const repo = "daannzy/Notes-Z";
       const btn = document.getElementById('download-btn');
-
+      
       try {
+        // Busca a release mais recente na API do GitHub
         const response = await fetch(`https://api.github.com/repos/${repo}/releases/latest`);
         const data = await response.json();
-        
-        // Busca o APK na release
+
+        // Procura o arquivo .apk na lista de assets
         const apkAsset = data.assets.find(asset => asset.name.toLowerCase().includes('.apk'));
 
         if (apkAsset && btn) {
-          const downloadUrl = apkAsset.browser_download_url;
-          
-          // PULO DO GATO: Cria o link que força a abertura no Chrome do Android
-          const linkChrome = `intent://${downloadUrl.replace(/^https?:\/\//, '')}#Intent;scheme=https;package=com.android.chrome;end`;
-
-          btn.onclick = function(e) {
-            // Verifica se está no navegador interno (WebView)
-            const isWebView = /FBAN|FBAV|Instagram|Messenger|GitHub|wv/.test(navigator.userAgent);
-            
-            if (isWebView) {
-              e.preventDefault(); // Para o download ruim da WebView
-              window.location.href = linkChrome; // Salta para o Chrome real
-            }
-          };
-
-          // Define o link normal para quem já está no Chrome
-          btn.href = downloadUrl;
+          // Define o link direto de download
+          btn.href = apkAsset.browser_download_url;
         }
       } catch (error) {
-        // Se der erro na API, manda para a página de releases
-        if (btn) btn.href = "https://github.com/daannzy/Notes-Z/releases/latest";
+        // Se a API falhar, o botão leva para a página de releases como segurança
+        if (btn) {
+          btn.href = "https://github.com/daannzy/Notes-Z/releases/latest";
+        }
       }
     }
 
+    // Executa a função assim que a página terminar de carregar
     window.onload = atualizarLinkDownload;
   </script>
 
