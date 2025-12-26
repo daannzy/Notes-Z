@@ -4,9 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Notes-Z - Download</title>
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
   <style>
-   
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 20px;
+      background: #fdfdfd;
+    }
+
     .botao-download {
       display: inline-block;
       padding: 15px 30px;
@@ -17,20 +25,27 @@
       font-weight: bold;
       font-size: 18px;
       margin-top: 20px;
-      transition: background 0.3s;
+      transition: background 0.3s, transform 0.1s;
       cursor: pointer;
     }
+
     .botao-download:active {
       background-color: #0056b3;
       transform: scale(0.98);
     }
+
+    footer {
+      margin-top: 50px;
+      padding: 20px 0;
+    }
   </style>
 </head>
-<body style="font-family: sans-serif; text-align: center; padding: 20px; background: #fdfdfd;">
+
+<body>
 
   <img src="13108958.png" alt="Notes-Z Logo" width="200">
 
-  <p style="max-width: 600px; margin: 0 auto;">
+  <p style="max-width: 600px; margin: 20px auto;">
     <strong>Notes Z</strong> é um app simples e leve para anotar ideias,
     lembretes e textos do dia a dia.<br>
     Tudo o que você escreve é salvo automaticamente
@@ -44,44 +59,54 @@
   </p>
 
   <p>
-    <a href="https://github.com/daannzy" target="_blank" style="color: #007bff; text-decoration: none;">Ver GitHub</a>
+    <a href="https://github.com/daannzy" target="_blank"
+       style="color: #007bff; text-decoration: none;">
+      Ver GitHub
+    </a>
   </p>
 
-  <footer style="margin-top: 50px; padding: 20px 0;">
+  <footer>
     <div style="margin-bottom: 10px;">
-      <a href="https://github.com/daannzy" target="_blank" style="color: #333; font-size: 28px; text-decoration: none;">
+      <a href="https://github.com/daannzy" target="_blank"
+         style="color: #333; font-size: 28px; text-decoration: none;">
         <i class="fab fa-github"></i>
       </a>
     </div>
-    <p style="margin: 0; font-size: 14px; color: #666;">&copy; 2025 daannzy</p>
+    <p style="margin: 0; font-size: 14px; color: #666;">
+      &copy; 2025 daannzy
+    </p>
   </footer>
 
+  <!-- SCRIPT FINAL (CORRIGIDO, NÃO TRAVA DOWNLOAD) -->
   <script>
     async function atualizarLinkDownload() {
       const repo = "daannzy/Notes-Z";
-      const btn = document.getElementById('download-btn');
-      
+      const btn = document.getElementById("download-btn");
+
       try {
-        
-        const response = await fetch(`https://api.github.com/repos/${repo}/releases/latest`);
-        const data = await response.json();
+        const res = await fetch(`https://api.github.com/repos/${repo}/releases/latest`);
+        const data = await res.json();
 
-        
-        const apkAsset = data.assets.find(asset => asset.name.toLowerCase().includes('.apk'));
+        const apk = data.assets.find(a =>
+          a.name.toLowerCase().endsWith(".apk")
+        );
 
-        if (apkAsset && btn) {
-         
-          btn.href = apkAsset.browser_download_url;
-        }
-      } catch (error) {
-        
-        if (btn) {
-          btn.href = "https://github.com/daannzy/Notes-Z/releases/latest";
-        }
+        if (!apk) throw new Error("APK não encontrado");
+
+        const tag = data.tag_name;
+        const file = apk.name;
+
+        // CDN → download rápido e estável
+        btn.href = `https://cdn.jsdelivr.net/gh/${repo}@${tag}/${file}`;
+        btn.setAttribute("download", file);
+
+      } catch (e) {
+        // Plano B seguro
+        btn.href = "https://github.com/daannzy/Notes-Z/releases/latest";
       }
     }
 
-    window.onload = atualizarLinkDownload;
+    atualizarLinkDownload();
   </script>
 
 </body>
